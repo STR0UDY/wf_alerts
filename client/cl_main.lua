@@ -40,7 +40,8 @@ end
 --[[
     IF YOU WISH TO SEND THE CODE AND STUFF CLIENT SIDE YOU CAN DO THIS:
     local code = '10-31B'
-    TriggerServerEvent('wf_alerts:server:Notification', 'ems', 'code', playerStreetsLocation)
+    local name = 'House Break-In' (Obviously you change these examples to whatever you use for your system)
+    TriggerServerEvent('wf_alerts:server:Notification', 'ems', code, name, playerStreetsLocation)
 
 ]]
 

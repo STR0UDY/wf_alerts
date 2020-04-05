@@ -4,7 +4,7 @@
  And basically sign up for free, grab the javascript link they provide you and replace it with "url_here".
  
  **NOTES** 
- This is intended as a development release only, at any time I choose to, I can fully stop the support of this script and leave it to your own devices, updates to this script will only come when as I please and when I please, if you have any bugs make an Issues or contact me on my Discord **Stroudy#0666**.
+ This is intended as a development release only, at any time I choose to, I can fully stop the support of this script and leave it to your own devices, updates to this script will only come as I please and when I please, if you have any bugs make an Issues or contact me on my Discord **Stroudy#0666**.
  
  The release is "as-is" meaning the intent of this release is for you to take my basic concept and do as you wish to your own willing.
  This script is in no way affiliated with NoPixel, just the styling itself is purely based off of Koils Script.

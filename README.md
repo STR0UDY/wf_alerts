@@ -9,3 +9,8 @@
  The release is "as-is" meaning the intent of this release is for you to take my basic concept and do as you wish to your own willing.
  This script is in no way affiliated with NoPixel, just the styling itself is purely based off of Koils Script.
  That being said, I don't claim for this script to be fully 100% functional nor working, they may be bugs, they may not be.
+
+
+
+**WARNING**
+The script inside [WIP] is as states, a Work-In-Progress script, no support will be available for that exact script, but any bug reporting or suggestions are fine, just no assistance to set up or use, I will include a snippet inside too at some later date.

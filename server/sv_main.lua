@@ -1,27 +1,42 @@
-RegisterCommand('alerts', function(source, args)
-    type = 'police'
-    data = {["code"] = '10-31B', ["name"] = 'House Break-In', ["loc"] = 'Panorama Dr, Grand Senora Desert'}
-    length = 3500
-    TriggerClientEvent('wf_alerts:SendAlert', source, type, data, length)
-end, false)
+local dispatchCodes = {}
 
-RegisterCommand('alerts2', function(source, args)
-    type = 'ems'
-    data = {["code"] = '*CALL*', ["name"] = 'Unresponsive Person', ["loc"] = 'Panorama Dr, Grand Senora Desert'}
-    length = 3500
-    TriggerClientEvent('wf_alerts:SendAlert', source, type, data, length)
-end, false)
-
-RegisterCommand('alerts3', function(source, args)
-    type = 'officer-down'
-    data = {["code"] = '10-00', ["name"] = 'Officer Down', ["loc"] = 'Mirror Park, somewhere I guess'}
-    length = 7500
-    TriggerClientEvent('wf_alerts:SendAlert', source, type, data, length)
-end, false)
-
-RegisterNetEvent('wf_alerts:server:Notification')
-AddEventHandler('wf_alerts:server:Notification', function(type, street)
-    data = {["code"] = '10-31B', ["name"] = 'House Break-In', ["loc"] = street}
-    length = 3500
-    TriggerClientEvent('wf_alerts:SendAlert', -1, type, data, length)
+AddEventHandler('onResourceStart', function(resource)
+    if resource == GetCurrentResourceName() then
+        MySQL.Async.fetchAll('SELECT * FROM dispatch_codes', {}, function(result)
+            if not result then print("No results available from the DB") return end
+            for k, v in pairs(result) do
+                print("Adding " .. v.display_code .. " to the table")
+                dispatchCodes[v.code] = {
+                    dbId = v.id,
+                    displayCode = v.display_code,
+                    description = v.description,
+                    isImportant = v.is_important,
+                    priority = v.priority,
+                    recipientList = json.decode(v.recepients)
+                }
+            end
+        end)
+    end
 end)
+
+RegisterServerEvent('wf-alerts:svNotify')
+AddEventHandler('wf-alerts:svNotify', function(pData)
+    if pData ~= nil then
+        if dispatchCodes[pData.dispatchCode] ~= nil then
+            local dispatchData = dispatchCodes[pData.dispatchCode]
+            pData.dbId = dispatchCodes[pData.dispatchCode].dbId
+            pData.priority = dispatchCodes[pData.dispatchCode].priority
+            pData.dispatchMessage = dispatchCodes[pData.dispatchCode].description
+            pData.isImportant = dispatchData.isImportant
+            pData.recipientList = dispatchCodes[pData.dispatchCode].recipientList
+            TriggerClientEvent('wf-alerts:clNotify', -1, pData)
+        end
+    end
+end)
+
+local logCalls = false -- Set to true to enable
+function addDataBaseEntry(pData) -- This is to be updated to log calls
+    if logCalls then
+        -- Not coded yet, please wait valve time :)
+    end
+end

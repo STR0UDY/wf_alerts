@@ -24,11 +24,11 @@ AddEventHandler('wf-alerts:svNotify', function(pData)
     if pData ~= nil then
         if dispatchCodes[pData.dispatchCode] ~= nil then
             local dispatchData = dispatchCodes[pData.dispatchCode]
-            pData.dbId = dispatchCodes[pData.dispatchCode].dbId
-            pData.priority = dispatchCodes[pData.dispatchCode].priority
-            pData.dispatchMessage = dispatchCodes[pData.dispatchCode].description
+            pData.dbId = dispatchData.dbId
+            pData.priority = dispatchData.priority
+            pData.dispatchMessage = dispatchData.description
             pData.isImportant = dispatchData.isImportant
-            pData.recipientList = dispatchCodes[pData.dispatchCode].recipientList
+            pData.recipientList = dispatchData.recipientList
             TriggerClientEvent('wf-alerts:clNotify', -1, pData)
         end
     end

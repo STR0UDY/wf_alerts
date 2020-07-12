@@ -42,7 +42,7 @@ CREATE TABLE `dispatch_codes` (
 --
 
 INSERT INTO `dispatch_codes` (`id`, `code`, `display_code`, `description`, `priority`, `is_important`, `recepients`) VALUES
-(1, '10-10', '10-10', 'Fight in progress', 1, 1, '{\"police\", \"ems\"}');
+(1, '10-10', '10-10', 'Fight in progress', 1, 1, '[{\"name\":\"police\"},{\"name\":\"ems\"}]');
 
 --
 -- Indexes for dumped tables

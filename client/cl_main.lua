@@ -33,7 +33,7 @@ RegisterNetEvent('wf-alerts:clNotify')
 AddEventHandler('wf-alerts:clNotify', function(pData)
     if pData ~= nil then
         if pData.recipientList then
-            if currentJob == pData.recipientList[1] or currentJob == pData.recipientList[2] then
+            if currentJob == pData.recipientList[1].name or currentJob == pData.recipientList[2].name then
                 SendNUIMessage({action = 'display', info = pData, job = currentJob})
                 PlaySound(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0, 0, 1)
             end

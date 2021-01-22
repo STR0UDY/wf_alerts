@@ -1,43 +1,178 @@
-$('document').ready(function() {
-    alerts = {};
-    
-    window.addEventListener('message', function (event) {
-        ShowNotif(event.data);
-    });
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:300,400,700,900&display=swap');
 
-    function ShowNotif(data) {
-            var $notification = CreateNotification(data);
-            var $height = '75px';
-            $('.notif-container').prepend($notification.animate({width: '350px', height: ''+ $height +'', 'line-height':'1.5em', fontSize: '12px', margin:'0 0 4px 0', opacity:'1'}));
-            setTimeout(function() {
-                $.when($notification.animate({width: '0', height:'0', fontSize: '0', margin:'5px 5px 5px 350px', opacity:'0'})).done(function() {
-                    $notification.remove()
-                });
-            }, data.length != null ? data.length : 2500);
-    }
+* {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+.alerts-wrapper {
+    display: none;
+    float: right;
+}
 
-    function CreateNotification(data) {
-       var $notification = $(document.createElement('div'));
-       if (data.info.isImportant === 1) {
-            $notification.addClass('notification').addClass('officer-down');
-       } else {
-            $notification.addClass('notification').addClass(data.job);
-       }
-       $notification.html('\
-       <div class="content">\
-       <div id="code">' + data.info.dispatchCode + '</div>\
-       <div id="alert-name">' + data.info.dispatchMessage + '</div>\
-       <div id="marker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>\
-       <div id="alert-info"><i class="fas fa-globe-europe"></i>' + data.info.street + '</div>\
-       </div>');
-       $notification.fadeIn();
-       if (data.style !== undefined) {
-           Object.keys(data.style).forEach(function(css) {
-               $notification.css(css, data.style[css])
-           });
-       }
-       return $notification;
-    }
-});
+.content {
+    padding: 2% 2% 0% 2%;
+}
 
-//       <div id="alert-info"><i class="fas fa-globe-europe"></i>' + data.info["loc"] + '</div>\
+.fas {
+    vertical-align: middle;
+    padding-right:8px;
+    margin-bottom:2px;
+}
+
+#code {
+    letter-spacing: 0.5px;
+    font-size: 0.95em;
+    font-weight: 700;
+    line-height:1.4em;
+    padding:0.4em;
+    padding-top:0.2em;
+    padding-bottom:0.1em;
+    background: rgba(209, 21, 99, 1.0);
+    float: left;
+    border-radius: 4px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
+}
+
+#marker {
+    float: right;
+    vertical-align:middle;
+    line-height: 2em;
+    padding-top:3px;
+    right:5px;
+    left:auto;
+    top:auto;
+    position: absolute;
+    font-size: 2.2em;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
+}
+
+#alert-name {
+    letter-spacing: 0.2px;
+    font-size: 1.15em;
+    font-weight: 700;
+    margin: 0 0 0 5px;
+    line-height:1.5em;
+    float: left;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
+}
+
+#alert-info {
+    font-size: 1em;
+    line-height:calc(1.5em + 2px);
+    vertical-align: middle;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+    margin-top: 20px;
+}
+
+.alerts {
+    width: 375px;
+    height: 75px;
+    color: white;
+}
+
+.alerts.ems {
+    box-shadow: 3px 0px 3px 0px rgba(223, 61, 61, 0.9) inset;
+    background: rgba(173, 38, 38, 0.9);
+}
+
+.alerts.police {
+    box-shadow: -3px 0px 0px 0px rgba(41, 97, 161, 0.9) inset;
+    background: rgba(26, 68, 116, 0.9);
+}
+
+.alerts.admin {
+    box-shadow: -3px 0px 0px 0px red inset;
+}
+
+.alerts.warning {
+    box-shadow: -3px 0px 0px 0px red inset;
+}
+
+.alerts.info {
+    box-shadow: -3px 0px 0px 0px red inset;
+}
+
+.alerts.error {
+    box-shadow: -3px 0px 0px 0px red inset;
+}
+
+.alerts.thefuckisthiscalledfor {
+    box-shadow: -3px 0px 0px 0px red inset;
+}
+
+
+
+
+
+.template, .notification {
+    display: none;
+}
+
+.notif-container {
+    width: 400px;
+    position: absolute;
+    right: 0.8%;
+    float: right;
+    display: display-block;
+    flex-flow: row;
+    flex-wrap: wrap;
+    line-height:0px;
+    height: 80vh;
+}
+
+.notification {
+    width: 0px;
+    height: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background:rgba(0,0,0,0.7);
+    margin-right: 0px;
+    font: caption;
+    font-size: 0px;
+    font-weight: 700;
+    margin: 0 0 0 350px;
+    opacity:0;
+    float: right;
+}
+
+.move {
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.error {
+    box-shadow: -5px 0px 0px 0px red inset;
+    background: rgba(160, 17, 48, 0.75);
+    color: #fff;
+}
+
+.ems {
+    box-shadow: -3px 0px 0px 0px rgba(182, 47, 47, 0.9) inset;
+    background: rgba(116, 26, 26, 0.9);
+}
+
+.police {
+    box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;
+    background: rgba(26, 68, 116, 0.9);
+}
+
+.officer-down {
+    box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;
+    background: rgba(26, 68, 116, 0.9);
+    animation: myfirst 5s linear 0s infinite alternate;
+}
+
+@keyframes myfirst {
+    0%   {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    15%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
+    30% {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    45%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
+    60% {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    75%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
+    90% {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    100%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
+  }

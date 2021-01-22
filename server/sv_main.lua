@@ -25,6 +25,7 @@ AddEventHandler('wf-alerts:svNotify', function(pData)
         if dispatchCodes[pData.dispatchCode] ~= nil then
             local dispatchData = dispatchCodes[pData.dispatchCode]
             pData.dbId = dispatchData.dbId
+            pData.displayCode = dispatchData.displayCode
             pData.priority = dispatchData.priority
             pData.dispatchMessage = dispatchData.description
             pData.isImportant = dispatchData.isImportant

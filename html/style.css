@@ -1,11 +1,8 @@
-@font-face {
-    font-family: 'SegoeUI';
-    src: url('/fonts/SegoeUI.ttf');
-  }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:300,400,700,900&display=swap');
 
 * {
     color: white;
-    font-family: "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji",  Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 .alerts-wrapper {
     display: none;
@@ -13,41 +10,59 @@
 }
 
 .content {
-    padding: 3% 2% 0% 3%;
+    padding: 2% 2% 0% 2%;
 }
 
 .fas {
+    vertical-align: middle;
     padding-right:8px;
+    margin-bottom:2px;
 }
+
 #code {
     letter-spacing: 0.5px;
-    font-size: 0.9rem;
+    font-size: 0.95em;
     font-weight: 700;
-    padding:2px;
+    line-height:1.4em;
+    padding:0.4em;
+    padding-top:0.2em;
+    padding-bottom:0.1em;
     background: rgba(209, 21, 99, 1.0);
     float: left;
-    border-radius: 5px;
+    border-radius: 4px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
 }
 
 #marker {
     float: right;
-    padding-right: 5%;
-    padding-top: 3%;
-    font-size: xx-large;
+    vertical-align:middle;
+    line-height: 2em;
+    padding-top:3px;
+    right:5px;
+    left:auto;
+    top:auto;
+    position: absolute;
+    font-size: 2.2em;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
 }
 
 #alert-name {
     letter-spacing: 0.2px;
-    font-size: 0.9rem;
+    font-size: 1.15em;
     font-weight: 700;
-    margin-left:1%;
+    margin: 0 0 0 5px;
+    line-height:1.5em;
     float: left;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.50);
 }
 
 #alert-info {
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-top: 28px;
+    font-size: 1em;
+    line-height:calc(1.5em + 2px);
+    vertical-align: middle;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+    margin-top: 20px;
 }
 
 .alerts {
@@ -57,13 +72,13 @@
 }
 
 .alerts.ems {
-    box-shadow: -5px 0px 0px 0px red inset;
-    background: rgba(160, 17, 48, 0.75);
+    box-shadow: 3px 0px 3px 0px rgba(223, 61, 61, 0.9) inset;
+    background: rgba(173, 38, 38, 0.9);
 }
 
 .alerts.police {
-    box-shadow: -5px 0px 0px 0px rgb(0, 183, 255) inset;
-    background: rgba(17, 84, 160, 0.75);
+    box-shadow: -3px 0px 0px 0px rgba(41, 97, 161, 0.9) inset;
+    background: rgba(26, 68, 116, 0.9);
 }
 
 .alerts.admin {
@@ -95,24 +110,30 @@
 }
 
 .notif-container {
-    width: 20%; /* was 15% */
+    width: 400px;
     position: absolute;
-    right: 1%; /* was 15% */
-    display: flex;
+    right: 0.8%;
+    float: right;
+    display: display-block;
     flex-flow: row;
     flex-wrap: wrap;
+    line-height:0px;
+    height: 80vh;
 }
 
 .notification {
-    width: 375px;
-    height: 75px;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 5px;
+    width: 0px;
+    height: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background:rgba(0,0,0,0.7);
+    margin-right: 0px;
     font: caption;
-    font-size: 12px;
-    font-weight: bold;
-    
+    font-size: 0px;
+    font-weight: 700;
+    margin: 0 0 0 350px;
+    opacity:0;
+    float: right;
 }
 
 .move {
@@ -130,27 +151,28 @@
 }
 
 .ems {
-    box-shadow: -5px 0px 0px 0px red inset;
-    background: rgba(160, 17, 48, 0.75);
-    color: #fff;
+    box-shadow: -3px 0px 0px 0px rgba(182, 47, 47, 0.9) inset;
+    background: rgba(116, 26, 26, 0.9);
 }
 
 .police {
-    box-shadow: -5px 0px 0px 0px rgb(0, 183, 255) inset;
-    background: rgba(17, 84, 160, 0.75);
+    box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;
+    background: rgba(26, 68, 116, 0.9);
 }
 
 .officer-down {
+    box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;
+    background: rgba(26, 68, 116, 0.9);
     animation: myfirst 5s linear 0s infinite alternate;
 }
 
 @keyframes myfirst {
-    0%   {background-color:red; left:0px; top:0px;}
-    15%  {background-color:blue; left:200px; top:200px;}
-    30% {background-color:red; left:0px; top:0px;}
-    45%  {background-color:blue; left:200px; top:200px;}
-    60% {background-color:red; left:0px; top:0px;}
-    75%  {background-color:blue; left:200px; top:200px;}
-    90% {background-color:red; left:0px; top:0px;}
-    100%  {background-color:blue; left:200px; top:200px;}
+    0%   {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    15%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
+    30% {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    45%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
+    60% {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    75%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
+    90% {background-color:rgba(173, 38, 38, 0.9); left:0px; top:0px;}
+    100%  {background-color:rgba(30, 79, 134, 0.9); left:200px; top:200px;}
   }

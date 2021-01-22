@@ -1,16 +1,16 @@
 $('document').ready(function() {
     alerts = {};
     
-
     window.addEventListener('message', function (event) {
         ShowNotif(event.data);
     });
 
     function ShowNotif(data) {
             var $notification = CreateNotification(data);
-            $('.notif-container').append($notification);
+            var $height = '75px';
+            $('.notif-container').prepend($notification.animate({width: '350px', height: ''+ $height +'', 'line-height':'1.5em', fontSize: '12px', margin:'0 0 4px 0', opacity:'1'}));
             setTimeout(function() {
-                $.when($notification.fadeOut()).done(function() {
+                $.when($notification.animate({width: '0', height:'0', fontSize: '0', margin:'5px 5px 5px 350px', opacity:'0'})).done(function() {
                     $notification.remove()
                 });
             }, data.length != null ? data.length : 2500);

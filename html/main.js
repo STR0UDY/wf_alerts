@@ -25,7 +25,7 @@ $('document').ready(function() {
        }
        $notification.html('\
        <div class="content">\
-       <div id="code">' + data.info.dispatchCode + '</div>\
+       <div id="code">' + data.info.displayCode + '</div>\
        <div id="alert-name">' + data.info.dispatchMessage + '</div>\
        <div id="marker"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>\
        <div id="alert-info"><i class="fas fa-globe-europe"></i>' + data.info.street + '</div>\
